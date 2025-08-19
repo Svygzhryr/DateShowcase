@@ -1,6 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const sassLoaderWithAutoUse = {
+        loader: 'sass-loader',
+        options: {
+            additionalData: `@use '@/_vars' as *;`,
+            sassOptions: {
+                includePaths: [path.resolve(__dirname, 'src')],
+            },
+        },
+}
+
 module.exports = {
     entry: './src/index.tsx',
     output: {
@@ -16,29 +26,29 @@ module.exports = {
                 use: 'ts-loader',
             },
             {
-                test: /\.module\.scss$/, // Target .module.scss files specifically
+                test: /\.module\.scss$/,
                 use: [
-                    'style-loader', // Injects CSS into the DOM
+                    'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
                             modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]', // Generates unique class names
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
                                 namedExport: false,
                             },
-                            importLoaders: 2, // Ensures sass-loader and postcss-loader (if used) are applied before css-loader
+                            importLoaders: 2,
                         },
                     },
-                    'sass-loader', // Compiles Sass to CSS
+                    sassLoaderWithAutoUse,
                 ],
             },
             {
-                test: /\.scss$/, // For regular .scss files (not CSS Modules)
-                exclude: /\.module\.scss$/, // Exclude .module.scss files from this rule
+                test: /\.scss$/,
+                exclude: /\.module\.scss$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'sass-loader',
+                    sassLoaderWithAutoUse,
                 ],
             },
         ],
