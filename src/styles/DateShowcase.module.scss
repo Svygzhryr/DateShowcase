@@ -1,0 +1,105 @@
+.container {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1480px;
+
+  border: 2px inset $blue_dark_transparent;
+
+  &::after, &::before  {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: $blue_dark_transparent;
+  }
+
+  &::after {
+    height: 100vh;
+    width: 2px;
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+
+  &::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+
+    transform: translateY(-50%);
+  }
+
+}
+
+.titleWrapper {
+  position: absolute;
+  display: flex;
+  margin: 177px 0 0 -2px;
+  height: 150px;
+  max-width: 500px;
+}
+
+.titleHighlight {
+  background: linear-gradient($blue, $pink);
+  height: 100%;
+  width: 5px;
+  z-index: 10;
+}
+
+.title {
+  margin-left: 78px;
+  font-size: 56px;
+  font-weight: bold;
+}
+
+// carousel
+
+.carouselWrapper {
+
+}
+
+.carousel {
+  position: absolute;
+  border: 2px solid $blue_darker_transparent;
+  border-radius: 50%;
+
+  left: 50%;
+  top: 50%;
+  width: 530px;
+  height: 530px;
+
+  transform: translate(-50%, -50%);
+}
+
+.periodWrapper {
+  width: 56px;
+  height: 56px;
+
+  &:hover .periodButton {
+    width: 56px;
+    height: 56px;
+    background-color: $white;
+  }
+}
+
+.periodButton {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background-color: $blue_dark;
+
+
+}
+
+.periodTitle {
+
+}
+
+.numbersWrapper {
+
+}
+
+.paginationWrapper {
+
+}

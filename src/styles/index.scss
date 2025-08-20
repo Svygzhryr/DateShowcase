@@ -30,3 +30,12 @@
   background-color: $white;
   color: $blue_dark;
 }
+
+body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
