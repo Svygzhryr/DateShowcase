@@ -1,9 +1,16 @@
-import React, {Fragment} from "react";
+import React, {useState} from "react";
 import styles from "../styles/DateShowcase.module.scss";
-import {historicalPeriods} from "../data";
+import Carousel from "./Carousel";
+import Slider from "./Slider";
+
+import {initialHistoricalPeriods} from "../data";
 
 
 const DateShowcase = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [historicalPeriods, setHistoricalPeriods] = useState(initialHistoricalPeriods)
+
+
     return (
         // title
         <div className={styles.container}>
@@ -12,36 +19,10 @@ const DateShowcase = () => {
                 <h3 className={styles.title}>Исторические <br/> даты</h3>
             </div>
 
-            {/*carousel*/}
-            <section className={styles.carouselWrapper}>
-                <div className={styles.carousel}>
-                    {historicalPeriods.map((period) => {
-                        const {id, title} = period;
-
-                        return <div className={styles.periodWrapper} key={id}>
-                            <button className={styles.periodButton}>{id}</button>
-                            <h2 className={styles.periodTitle}>{title}</h2>
-                        </div>
-                    })}
-                </div>
-
-                <div className={styles.numbersWrapper}>
-                    <h2>2015</h2>
-                    <h2>2022</h2>
-                </div>
-
-                <div className={styles.paginationWrapper}>
-                    <p className={styles.pageNumbers}></p>
-
-                    <div className={styles.paginationButtonsWrapper}>
-                        <button className={styles.paginatioButtonPrev}></button>
-                        <button className={styles.paginatioButtonNext}></button>
-                    </div>
-                </div>
-            </section>
+            <Carousel historicalPeriods={historicalPeriods} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
 
             {/*slider*/}
-            <div className={styles.sliderWrapper}></div>
+            <Slider/>
         </div>
     )
 }

@@ -1,4 +1,16 @@
-export const historicalPeriods = [
+export interface IEvent {
+    year: number;
+    description: string;
+}
+
+export interface IHistoricalPeriod {
+    id: number;
+    title: string;
+    period: string;
+    events: IEvent[];
+}
+
+export const initialHistoricalPeriods = [
     {
         id: 1,
         title: "Наука и техника",
